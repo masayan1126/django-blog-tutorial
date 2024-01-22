@@ -6,7 +6,7 @@ from typing import List
 class ArticleDomain:
     def __init__(
         self,
-        id,
+        id: int,
         title: str,
         content: str,
         author: int,

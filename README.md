@@ -112,3 +112,43 @@ python manage.py test <appname>
 
 #### 汎用クラス、関数
 shared等に配置した共通クラス、関数のテスト
+
+## Python全般のVSCode拡張機能
+自動インポート、コード補完、構文チェック
+[microsoft公式の拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-python.python)をインストールする
+
+### リンターの設定
+型チェックなど
+```json
+// strictだと型に厳しすぎるので、basicで指定
+"python.analysis.typeCheckingMode": "basic",
+```
+
+## フォーマッター
+- [Prettierでフォーマットするプラグイン](https://github.com/prettier/plugin-python)のメンテナンスがしばらくされてないようなので、Blackを使用する
+
+### 導入手順
+1. [VSCode拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)をインストールする
+2. settings.jsonに以下を追記
+```json
+ "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+```
+
+1. blackを依存関係に追加する(これは1回きり)
+2. .pyファイルを保存してフォーマットが効いていれば設定完了
+   1. 以下の折り返しの設定を追加してみて、設定した数で折り返せば反映できている
+   2. 折り返しの設定は実際に使用する際は特に不要なので、反映が確認できたら消しておく
+
+```json
+"[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  // 極端に少ない数とかにしてフォーマットが効くか試してみてください
+  "black-formatter.args": [
+    "--line-length=10"
+  ],
+```
