@@ -22,6 +22,7 @@ class ArticleRepository:
             }
         )
 
+        # MEMO: リクエストデータのバリデーションはviewレイヤーの責務の気もするが、serializerを使わないと、リクエストデータのバリデーションができないので、ここでバリデーションを行う
         article_serializer.is_valid(raise_exception=True)
         article_serializer.save()
 
@@ -90,7 +91,6 @@ class ArticleRepository:
     @staticmethod
     def find_by_id(id: int) -> ArticleDomain:
         article = Article.article_with(id, "tags", "articleseo", "author")
-        # print(article)
 
         return ArticleDomain(
             id=article.id,

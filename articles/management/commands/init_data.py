@@ -5,6 +5,7 @@ from tags.models import Tag
 from django.core.management.base import BaseCommand
 
 
+# MEMO: シーダーやバッチはmanagement/commands配下に作成すると使える
 class Command(BaseCommand):
     help = "Initialize data for Article, Tag, Author, Comment"
 

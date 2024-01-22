@@ -13,8 +13,8 @@ class ArticleTransformer:
             "author": article.author,
             "tags": article.tags,
             "seo": {
-                "title": article.meta_title,
-                "description": article.meta_description,
+                "meta_title": article.meta_title,
+                "meta_description": article.meta_description,
             },
         }
 

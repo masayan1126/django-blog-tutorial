@@ -1,4 +1,3 @@
-from typing import Tuple
 from articles.domain.article.article_domain import ArticleDomain
 from articles.domain.article.article_create_data_ import ArticleCreateData
 from articles.repository.article.article_repository import ArticleRepository
