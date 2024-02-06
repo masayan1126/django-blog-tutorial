@@ -1,9 +1,9 @@
-from dataclasses import dataclass
 from typing import List
 
+from shared.domain.entity import Entity
 
-@dataclass
-class ArticleDomain:
+
+class ArticleDomain(Entity):
     def __init__(
         self,
         id: int,
@@ -14,7 +14,7 @@ class ArticleDomain:
         meta_title: str,
         meta_description: str,
     ):
-        self.id = id
+        super().__init__(id)
         self.title = title
         self.content = content
         self.author = author

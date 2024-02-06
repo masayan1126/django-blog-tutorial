@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from django.test import TestCase
-from articles.domain.article.article_create_data_ import ArticleCreateData
+from articles.http.request.article_create_data import ArticleCreateData
 from articles.models import Article
 from articles.repository.article.article_repository import ArticleRepository
 from articles.use_case.article_create_use_case import ArticleCreateUseCase
