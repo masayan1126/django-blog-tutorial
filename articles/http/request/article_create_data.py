@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List
+from rest_framework import serializers
 
 
 # MEMO: dataclassを使用すると、__init__や__repr__、__eq__を自動で定義してくれる

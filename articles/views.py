@@ -1,4 +1,4 @@
-from articles.domain.article.article_create_data_ import (
+from articles.http.request.article_create_data import (
     ArticleCreateData,
 )
 from rest_framework.response import (
@@ -16,6 +16,9 @@ from articles.domain.article.article_update_data import (
 )
 from articles.domain.article_transformer import (
     ArticleTransformer,
+)
+from articles.http.request.article_create_request_validator import (
+    ArticleCreateRequestValidator,
 )
 from articles.use_case.article_create_use_case import (
     ArticleCreateUseCase,
@@ -37,16 +40,11 @@ from articles.use_case.article_update_use_case import (
 # MEMO: 可読性のため、viewにはメソッドをCRUD順に記述(単純なCRUD以外のエンドポイントがある場合はCRUDの次に記述)し、以降はプライベートメソッドやフレームワーク固有のオーバーライドメソッド等を記述する
 class ArticleView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
-        article = ArticleCreateUseCase().create(
-            ArticleCreateData(
-                title=request.data["title"],
-                content=request.data["content"],
-                author_id=request.data["author_id"],
-                tags=request.data["tags"],
-                meta_title=request.data["meta_title"],
-                meta_description=request.data["meta_description"],
-            ),
+        validated_article_create_data = ArticleCreateRequestValidator().do_validate(
+            request.data
         )
+
+        article = ArticleCreateUseCase().create(validated_article_create_data)
 
         # MEMO: ドメイン層のオブジェクトをシリアライズ(配列や辞書に変換)する責務
         article = ArticleTransformer.to_dictionary(article)

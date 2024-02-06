@@ -1,6 +1,6 @@
 from typing import List
 from articles.domain.article.article_domain import ArticleDomain
-from articles.domain.article.article_create_data_ import ArticleCreateData
+from articles.http.request.article_create_data import ArticleCreateData
 from articles.domain.article.article_criteria import ArticleCriteria
 from articles.domain.article.article_serializer import ArticleSerializer
 from articles.domain.article.article_update_data import ArticleUpdateData
@@ -22,7 +22,6 @@ class ArticleRepository:
             }
         )
 
-        # MEMO: リクエストデータのバリデーションはviewレイヤーの責務の気もするが、serializerを使わないと、リクエストデータのバリデーションができないので、ここでバリデーションを行う
         article_serializer.is_valid(raise_exception=True)
         article_serializer.save()
 
