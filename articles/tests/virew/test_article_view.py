@@ -47,7 +47,7 @@ class TestArticleView(APITestCase):
                 "tags": self.tag_ids,
                 "seo": {
                     "meta_title": "Meta Title1",
-                    "meta_description": "Meta description1",
+                    "meta_description": "Meta description11",
                 },
             },
         )
