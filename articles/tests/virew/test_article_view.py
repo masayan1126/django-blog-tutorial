@@ -17,7 +17,9 @@ class TestArticleView(APITestCase):
 
         self.url = reverse("article-list")
 
-    def test_記事を新規作成するAPIにリクエストを送信し作成した記事をレスポンスとして受け取ることができる(self):
+    def test_記事を新規作成できる(
+        self,
+    ):
         request_data = {
             "title": "Title1",
             "content": "Content1",
